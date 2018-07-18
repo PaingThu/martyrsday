@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title></title>
+	<meta charset="utf-8">
+	<style>
+	body{
+		width: 100%;
+		
+	}
+		#adam{
+			background: url(img/mpt.png);
+			
+			margin-top: -300px;
+			width: 180px;
+			height: 325px;
+			-webkit-animation: walk-east 1.0s steps(8) infinite;
+			animation: walk-east 1.0s steps(8) infinite;
+			float:left;
+			
+		}
+		@-webkit-keyframes walk-east{
+			from{background-position: 0px;}
+			to{background-position: -1472px;}
+		}
+		@keyframes walk-east{
+			from{background-position: 0px;}
+			to{background-position: -1472px;}
+		}
+		.bg{
+			margin-top: -100px;
+			background-image: url(img/md2.png),url(img/md1.jpg),url(img/md3.jpg),url(img/mday.jpg),url(img/m5.png),url(img/m6.jpg);
+			background-position: 1246px,2492px,3678px,4924px,6170px,7416px;
+			background-repeat: no-repeat,no-repeat,no-repeat;
+			height: 100vh;
+			background-size:50%,50% 75vh,50% 75vh ;
+			animation: moves 15s linear infinite;
+		}
+		@keyframes moves{
+			from{background-position: 1246px,2492px,3678px,4924px,6170px,7416px;
+				
+			}
+			to{background-position: -7416px,-6170px,-4924px,-3678px,-2492px,-1246px;
+				}
+		}
+				
+		h2{
+			text-align: center;
+			color: white;
+			background-color: red;
+			width:90%;
+			margin:1% auto;
+		}
+		label{
+			display: block; padding: 1%; border: 1px dotted red; text-align: center; border-radius: 50%; color: red;
+		}
+		.title{
+			
+			color:red;
+			margin-top:-40px;
+			display: block;
+			text-align: center;
+			font-size: 50px;
+		}
+	</style>
+</head>
+<body>
+	<h2>က်ဆုံးေလၿပီေသာ ဗိုလ္ခ်ဳပ္ေအာင္ဆန္းႏွင့္တကြ အာဇာနည္ေခါင္းေဆာင္ႀကီးမ်ားအား အေလးျပဳပါတယ္</h2>
+	<div class="bg"></div>
+	<div id="adam"><label>အေလးျပဳပါတယ္</label></div>
+	<div class="title">71st MYANMAR MARTYRS' DAY - JULY 19 2018</div>
+	
+
+</body>
+</html>
