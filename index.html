@@ -1,75 +1,293 @@
-<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
-	<title></title>
-	<meta charset="utf-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MYANMAR MARTYRS' DAY</title>
 	<style>
-	body{
-		width: 100%;
-		
-	}
-		#adam{
-			background: url(img/mpt.png);
-			
-			margin-top: -300px;
-			width: 180px;
-			height: 325px;
-			-webkit-animation: walk-east 1.0s steps(8) infinite;
-			animation: walk-east 1.0s steps(8) infinite;
-			float:left;
-			
+		body, h2{
+			margin: 0;
+			padding: 0;
 		}
-		@-webkit-keyframes walk-east{
-			from{background-position: 0px;}
-			to{background-position: -1472px;}
+		.wallpaper{
+			position: relative;
+			display: flex;
+			flex-wrap: nowrap;
+			overflow: hidden;
+			padding: 1rem;
+			background-color: white;
 		}
-		@keyframes walk-east{
-			from{background-position: 0px;}
-			to{background-position: -1472px;}
+		.wallpaper .wallpaper-bg-text{
+			flex: 0 0 auto;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 		}
-		.bg{
-			background-image: url(img/md2.png),url(img/md1.jpg),url(img/md3.jpg),url(img/mday.jpg),url(img/m5.png),url(img/m6.jpg);
-			background-repeat: no-repeat,no-repeat,no-repeat;
-			height: 100vh;
-			background-size: contain;
-			animation: moves 15s linear infinite;
+		.wallpaper .each-wallpaper{
+			flex: 0 0 auto;
+			display: flex;
+			width: 100%;
 			height: calc(100vh - 170px);
+			/* animation: scrollDivs 10s linear infinite; */
+			border: 0.5px solid darkgray;
+			background-color: white;
 		}
-		@keyframes moves{
-			from{background-position: 1246px,2492px,3678px,4924px,6170px,7416px;
-				
-			}
-			to{background-position: -7416px,-6170px,-4924px,-3678px,-2492px,-1246px;
-				}
+		.wallpaper .each-wallpaper img{
+			background: white;
+			height: 100%;
+			margin: 0 auto;
+			box-shadow:  0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); 
 		}
 				
-		h2{
-			text-align: center;
-			color: white;
+		nav{
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			background-color: red;
-			width:90%;
-			margin:1% auto;
+			color: white;
+			padding: 0.5rem 1rem;
+			box-shadow: 0px 5px 10px #ddd;
 		}
 		label{
 			display: block; padding: 1%; border: 1px dotted red; text-align: center; border-radius: 50%; color: red;
 		}
-		.title{
-			
+		.footer{
+			position: fixed;
+			bottom: 0;
+			width: 100%;
 			color:red;
-			margin-top:-40px;
 			display: block;
 			text-align: center;
-			font-size: 50px;
+			font-size: 1.5rem;
+		}
+		.suffix {
+			margin-right: 1.5rem;
+		}
+		.suffix::after{
+			position: absolute;
+			font-size: 2rem;
+		}
+		.anni_1::after{
+			content: "st";
+		}
+		.anni_2::after{
+			content: "nd";
+		}
+		.anni_3::after{
+			content: "rd";
+		}
+		.anni_::after{
+			content: "th";
+		}
+		.btn{
+			padding: 0.5rem 1rem;
+			border-radius: 1rem;
+			border-color: red;
+			background-color: red;
+			color: white;
+			cursor: pointer;
+		}
+		.play-pause-btn{
+			position: absolute;
+			bottom: 1.5rem;
+			z-index: 999;
+			width: 40px;
+			height: 40px;
+			display: flex;
+			align-items: center;
+			cursor: pointer;
+			border: 1px solid red;
+			background-color: white;
+			border-radius: 50px;
+			opacity: 50%;
+		}
+		.play-pause-btn:before{
+			content: "";
+			display: block;
+			width: 100%;
+			height: 100%;
+			background-color: red;
+			cursor: pointer;
+			transition: 0.3s ease;
+		}
+		.play-pause-btn:hover{
+			opacity: 100%;
+		}
+		.play-pause-btn.play:before{
+			clip-path: polygon(40% 30%, 40% 70%, 70% 50%);
+		}
+		.play-pause-btn.pause:before{
+			clip-path: polygon(30% 30%, 30% 70%, 45% 70%, 45% 30%, 55% 30%, 55% 70%, 70% 70%, 70% 30%);
 		}
 	</style>
 </head>
-<body>
-	<h2>ကျဆုံးလေပြီးသော ဗိုလ်ချုပ်အောင်ဆန်းနှင့်တကွ အာဇာနည်ခေါင်းဆာင်းများအား</h2>
-	<div class="bg"></div>
-	<div id="adam"><label>အလေးပြုပါတယ်</label></div>
-	<div class="title">71st MYANMAR MARTYRS' DAY - JULY 19 2018</div>
-	
+	<body>
+		<nav>
+			<h2 id="navBarTitle"></h2>
+		</nav>
+		<div id="wallpaper" class="wallpaper">
+			<div id='wallpaperBgText' class='wallpaper-bg-text'>
+				<h2 id="wpTitle"></h2>
+				<p>၁၉၄၇ ခုနှစ်၊ ဇူလိုင်လ (၁၉) ရက်၊ စနေနေ့ မြန်မာစံတော်ချိန် နံနက် ၁၀ နာရီ ၃၇ မိနစ်တွင်</p>
+				<p>ရန်ကုန်မြို့လယ်ရှိ ဝန်ကြီးများရုံး၌ အစည်းအဝေးကျင်းပနေချိန်တွင် ဂဠုန်ဦးစော ဦးဆောင်သည့် မသမာသောလူတစ်စုက</p>
+				<p>မြန်မာနိုင်ငံအတွက် လွတ်လပ်ရေးရရန်ကြိုးပမ်းခဲ့သည့် ဗိုလ်ချုပ်အောင်ဆန်းနှင့်တကွ တိုင်းရင်းသားအာဇာနည်ခေါင်းဆောင်ကြီးတို့အား လုပ်ကြံသတ်ဖြတ်ခဲ့၍</p> 
+				<p>နိုင်ငံတော်လုပ်ကြံမှုဖြစ်ပွားခဲ့ပါသည်။ </p>
+				<p>မျက်ရည်သွန်လို့ ဘဝင်ညှိုးခဲ့ကြရသည့် နေ့တစ်နေ့ ဖြစ်သည်သာမက နိုင်ငံအတွက်လည်း ဆုံးရှုံးမှု ကြီးမားခဲ့သည့် မမေ့နိုင်စရာ ကြေကွဲဝမ်းနည်းဖွယ် သမိုင်းဝင်နေ့တစ်နေ့ဖြစ်ပါသည်။</p>
+				<button id="slauteButton" class="btn" onclick="slaute()">အလေးပြုမည်</button>
+				<button id="playPauseButton" class="play-pause-btn" style="display: none;" onclick="clickPlayPauseBtn()"></button>
+				<audio id="audioPlayer" src="song/burma_martyr_day.mp3"></audio>
+			</div>
+		</div>
+		<div class="footer">
+			<div id="footerContent">
+				<span id="fcText" style="display: none;">ကျဆုံးလေပြီးသော ဗိုလ်ချုပ်အောင်ဆန်းနှင့်တကွ အာဇာနည်ခေါင်းဆောင်းများအား အလေး.....ပြု</span>
+			</div>
+		</div>
+		
+		<script>
+			const animationSpeed = 10;
+			const wallpaperStratTime = 1;
+			const keyFrameName = "scrollDivs";
+			const styleSheet = document.styleSheets[0];
+			const myanmar_number = [
+				"၀",
+				"၁",
+				"၂",
+				"၃",
+				"၄",
+				"၅",
+				"၆",
+				"၇",
+				"၈",
+				"၉"
+			];
+			// Wallpaper list
+			const wallpapers = [
+				{ id: 1, img_name: "md2.png" },
+				{ id: 2, img_name: "md1.jpg" },
+				{ id: 3, img_name: "md3.jpg" },
+				{ id: 4, img_name: "mday.jpg" },
+				{ id: 5, img_name: "m5.png" },
+				{ id: 6, img_name: "m6.jpg" },
+				{ id: 7, img_name: "md2.png" },
+				{ id: 8, img_name: "md1.jpg" },
+				{ id: 9, img_name: "md3.jpg" },
+				{ id: 10, img_name: "mday.jpg" },
+				{ id: 11, img_name: "m5.png" },
+				{ id: 12, img_name: "m6.jpg" },
+			];
 
-</body>
+			const wallpaperElement = document.getElementById("wallpaper") 
+			const playPauseButtonElement = document.getElementById("playPauseButton");
+			const slauteButtonElement = document.getElementById("slauteButton")
+			const footerContentTextElement = document.getElementById("fcText")
+			const audioPlayer = document.getElementById("audioPlayer");
+
+			// Wallpaper တစ်ခုခြင်းစီအတွက် div တစ်ခုစီဖန်တီးခြင်း
+			wallpapers.map(w => {
+				const div = document.createElement("div")
+				div.className = "each-wallpaper";
+				const img = document.createElement("img")
+				img.src = `img/${w.img_name}`;
+				div.appendChild(img)
+				wallpaperElement.appendChild(div)
+			})
+
+			const ews = document.getElementsByClassName("each-wallpaper");
+
+			// keyframe ကို js ကနေ ဖန်တီးခြင်း 
+			// scoll animation လုပ်မဲ့ image အ၇ေအတွက်ပေါ်မှာ မူတည်ပြီးတော့ frame start , end value တွေကို သတ်မှတ်
+			styleSheet.insertRule(`
+				@keyframes ${keyFrameName} {
+					0% {
+						transform: translateX(0vw);
+					}
+					100% {
+						transform: translateX(-${wallpapers.length * 125}vw);
+					}
+				}
+			`, styleSheet.cssRules.length);
+
+			const engToMmNumber = (num) => {
+				let mmNum = ""
+				Array.from(String(num), Number).map(n => mmNum += myanmar_number[n]);
+				return mmNum;
+			}
+
+			let pause = false;
+			const clickPlayPauseBtn = () => {
+				pause = !pause;
+				Array.from(ews).forEach(ew => {
+					if(pause){
+						ew.style.animationPlayState = 'paused';
+					}else{
+						ew.style.animationPlayState = 'running';
+					}
+				});
+				togglePlayPause();
+			}
+
+			const togglePlayPause = () =>{
+				const addClass = pause ? "play" : "pause";
+				const removeClass = pause ? "pause" : "play";
+				playPauseButtonElement.classList.remove(removeClass)
+				playPauseButtonElement.classList.add(addClass);
+				if(pause){
+					audioPlayer.pause();
+				}else{
+					audioPlayer.play();
+				}
+			}
+			const stopTheAudio = () => {
+				audioPlayer.pause();
+				audioPlayer.currentTime = 0;
+			}
+
+			const slaute = ()  => {
+				footerContentTextElement.style.display = "";
+				slauteButtonElement.style.display = "none";
+				setTimeout(() => {
+					Array.from(ews).forEach(ew => {
+						ew.style.animation = `${keyFrameName} ${wallpapers.length*animationSpeed}s linear infinite`
+					});
+					
+					togglePlayPause();
+					playPauseButtonElement.style.display = "";
+					
+					audioPlayer.play();
+				}, wallpaperStratTime*1000);
+				setTimeout(() => {
+					slauteButtonElement.style.display = "";
+					slauteButtonElement.innerText = "အလေးပြုပြီးပါပြီ";
+					slauteButtonElement.onclick = finishSlaute;
+				}, 10000);
+			}
+
+			const finishSlaute = () => {
+				Array.from(ews).forEach(ew => {
+					ew.style.animation = "none";
+				});
+				slauteButtonElement.innerText = "အလေးပြုမည်";
+				slauteButtonElement.onclick = slaute;
+				playPauseButtonElement.style.display = "none";
+				footerContentTextElement.style.display = "none";
+				stopTheAudio();
+			}
+			
+			// Footer မှာ ဖော်ပြမဲ့ စာသားကို နှစ်အလိုက် ပြောင်လဲအောင်လုပ်ခြင်း
+			const today = new Date();
+			let currentYear = today.getFullYear();
+			const currentMonth = today.getMonth() + 1;
+			const martyrs_day = new Date(`${currentYear}-${currentMonth}-19`)
+			if(today < martyrs_day){
+				currentYear--;
+			}
+			const anni = currentYear - 1947;
+			let lastDigit = anni % 10;
+
+			document.getElementById("navBarTitle").innerText = `${engToMmNumber(anni)} နှစ်မြောက် မြန်မာအာဇာနည်နေ့`;
+			document.getElementById("wpTitle").innerText = `${engToMmNumber(anni)} နှစ်မြောက် မြန်မာအာဇာနည်နေ့`;
+			
+		</script>
+	</body>
 </html>
