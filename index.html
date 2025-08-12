@@ -4,7 +4,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>MYANMAR MARTYRS' DAY</title>
 	<style>
-		body, h2{
+		body, h2, p{
 			margin: 0;
 			padding: 0;
 		}
@@ -19,6 +19,11 @@
 		.wallpaper .wallpaper-bg-text{
 			flex: 0 0 auto;
 			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		.wallpaper .wallpaper-bg-text .sad-message{
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -128,11 +133,14 @@
 		<div id="wallpaper" class="wallpaper">
 			<div id='wallpaperBgText' class='wallpaper-bg-text'>
 				<h2 id="wpTitle"></h2>
-				<p>၁၉၄၇ ခုနှစ်၊ ဇူလိုင်လ (၁၉) ရက်၊ စနေနေ့ မြန်မာစံတော်ချိန် နံနက် ၁၀ နာရီ ၃၇ မိနစ်တွင်</p>
-				<p>ရန်ကုန်မြို့လယ်ရှိ ဝန်ကြီးများရုံး၌ အစည်းအဝေးကျင်းပနေချိန်တွင် ဂဠုန်ဦးစော ဦးဆောင်သည့် မသမာသောလူတစ်စုက</p>
-				<p>မြန်မာနိုင်ငံအတွက် လွတ်လပ်ရေးရရန်ကြိုးပမ်းခဲ့သည့် ဗိုလ်ချုပ်အောင်ဆန်းနှင့်တကွ တိုင်းရင်းသားအာဇာနည်ခေါင်းဆောင်ကြီးတို့အား လုပ်ကြံသတ်ဖြတ်ခဲ့၍</p> 
-				<p>နိုင်ငံတော်လုပ်ကြံမှုဖြစ်ပွားခဲ့ပါသည်။ </p>
-				<p>မျက်ရည်သွန်လို့ ဘဝင်ညှိုးခဲ့ကြရသည့် နေ့တစ်နေ့ ဖြစ်သည်သာမက နိုင်ငံအတွက်လည်း ဆုံးရှုံးမှု ကြီးမားခဲ့သည့် မမေ့နိုင်စရာ ကြေကွဲဝမ်းနည်းဖွယ် သမိုင်းဝင်နေ့တစ်နေ့ဖြစ်ပါသည်။</p>
+				<h3 id="mtAnniDate"></h3>
+				<div class="sad-message">
+					<p>၁၉၄၇ ခုနှစ်၊ ဇူလိုင်လ (၁၉) ရက်၊ စနေနေ့ မြန်မာစံတော်ချိန် နံနက် ၁၀ နာရီ ၃၇ မိနစ်တွင်</p>
+					<p>ရန်ကုန်မြို့လယ်ရှိ ဝန်ကြီးများရုံး၌ အစည်းအဝေးကျင်းပနေချိန်တွင် ဂဠုန်ဦးစော ဦးဆောင်သည့် မသမာသောလူတစ်စုက</p>
+					<p>မြန်မာနိုင်ငံအတွက် လွတ်လပ်ရေးရရန်ကြိုးပမ်းခဲ့သည့် ဗိုလ်ချုပ်အောင်ဆန်းနှင့်တကွ တိုင်းရင်းသားအာဇာနည်ခေါင်းဆောင်ကြီးတို့အား လုပ်ကြံသတ်ဖြတ်ခဲ့၍</p> 
+					<p>နိုင်ငံတော်လုပ်ကြံမှုဖြစ်ပွားခဲ့ပါသည်။ </p>
+					<p>မျက်ရည်သွန်လို့ ဘဝင်ညှိုးခဲ့ကြရသည့် နေ့တစ်နေ့ ဖြစ်သည်သာမက နိုင်ငံအတွက်လည်း ဆုံးရှုံးမှု ကြီးမားခဲ့သည့် မမေ့နိုင်စရာ ကြေကွဲဝမ်းနည်းဖွယ် သမိုင်းဝင်နေ့တစ်နေ့ဖြစ်ပါသည်။</p>
+				</div>
 				<button id="slauteButton" class="btn" onclick="slaute()">အလေးပြုမည်</button>
 				<button id="playPauseButton" class="play-pause-btn" style="display: none;" onclick="clickPlayPauseBtn()"></button>
 				<audio id="audioPlayer" src="song/burma_martyr_day.mp3"></audio>
@@ -176,6 +184,10 @@
 				{ id: 11, img_name: "m5.png" },
 				{ id: 12, img_name: "m6.jpg" },
 			];
+
+			const navBarTitleElement = document.getElementById("navBarTitle")
+			const mtAnniDateElement = document.getElementById("mtAnniDate")
+			const wpTitleElement = document.getElementById("wpTitle")
 
 			const wallpaperElement = document.getElementById("wallpaper") 
 			const playPauseButtonElement = document.getElementById("playPauseButton");
@@ -278,15 +290,16 @@
 			const today = new Date();
 			let currentYear = today.getFullYear();
 			const currentMonth = today.getMonth() + 1;
-			const martyrs_day = new Date(`${currentYear}-${currentMonth}-19`)
+			const martyrs_day = new Date(`${currentYear}-07-19`)
 			if(today < martyrs_day){
 				currentYear--;
 			}
 			const anni = currentYear - 1947;
 			let lastDigit = anni % 10;
 
-			document.getElementById("navBarTitle").innerText = `${engToMmNumber(anni)} နှစ်မြောက် မြန်မာအာဇာနည်နေ့`;
-			document.getElementById("wpTitle").innerText = `${engToMmNumber(anni)} နှစ်မြောက် မြန်မာအာဇာနည်နေ့`;
+			navBarTitleElement.innerText = `${engToMmNumber(anni)} နှစ်မြောက် မြန်မာအာဇာနည်နေ့`;
+			mtAnniDateElement.innerText = `ဇူလိုင် ၁၉၊ ${engToMmNumber(currentYear)}`;
+			wpTitleElement.innerText = `${engToMmNumber(anni)} နှစ်မြောက် မြန်မာအာဇာနည်နေ့`;
 			
 		</script>
 	</body>
